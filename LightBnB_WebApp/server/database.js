@@ -75,7 +75,13 @@ exports.getAllReservations = getAllReservations;
  * @return {Promise<[{}]>}  A promise to the properties.
  */
  const getAllProperties = function(options, limit = 10) {
-
+  pool.query(`
+  SELECT * FROM properties
+  LIMIT $1
+  `, [limit])
+  .then(res => res.rows);
+}
+exports.getAllProperties = getAllProperties;
 
 /**
  * Add a property to the database
@@ -83,9 +89,6 @@ exports.getAllReservations = getAllReservations;
  * @return {Promise<{}>} A promise to the property.
  */
 const addProperty = function(property) {
-  const propertyId = Object.keys(properties).length + 1;
-  property.id = propertyId;
-  properties[propertyId] = property;
-  return Promise.resolve(property);
+
 }
 exports.addProperty = addProperty;
