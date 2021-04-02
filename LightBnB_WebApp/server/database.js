@@ -68,7 +68,6 @@ const getAllReservations = function(guest_id, limit = 10) {
 exports.getAllReservations = getAllReservations;
 
 /// Properties
-
 /**
  * Get all properties.
  * @param {{}} options An object containing query options.
@@ -76,13 +75,6 @@ exports.getAllReservations = getAllReservations;
  * @return {Promise<[{}]>}  A promise to the properties.
  */
  const getAllProperties = function(options, limit = 10) {
-  pool.query(`
-  SELECT * FROM properties
-  LIMIT $1
-  `, [limit])
-  .then(res => res.rows);
-}
-exports.getAllProperties = getAllProperties;
 
 
 /**
